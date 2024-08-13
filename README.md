@@ -1,6 +1,6 @@
 # MyPortfolio bir .NET 8.0 ürünüdür. ASPNET.IdentityCore ile güçlendirilmiştir. Admin Paneli resimleri alt taraftadır. En altta 3 adet uzun gifler mevcuttur. Giflerde ise anasayfa ve admin panelinde gezindiğim kısımlar mevcuttur.
 
-# ==============> PORTFOLIO BÖLÜMÜ <==============
+# PORTFOLIO BÖLÜMÜ :
 
 ### Anasayfa:
 ![](https://i.hizliresim.com/fceba9u.png)
@@ -20,7 +20,7 @@
 ![](https://i.hizliresim.com/rlt6jkj.png)
 
 
-# =============> ADMIN PANEL BÖLÜMÜ <=============
+# ADMIN PANEL BÖLÜMÜ :
 
 ### Anasayfa (Listeleme-Düzenleme-Silme):
 ![](https://i.hizliresim.com/gchniiw.png)
@@ -43,10 +43,10 @@
 ### İletişime Geçenler (Listeleme-Düzenleme-Silme):
 ![](https://i.hizliresim.com/5i0gd59.png)
 
-# =============> GIF BÖLÜMÜ <=============
+# GIF BÖLÜMÜ :
 
 ### Anasayfada Hızlı Tur (Aşağıda gif yoksa bekleyin internet hızınıza bağlı yüklenecektir):
-![Home](https://github.com/user-attachments/assets/1a8a04c0-3a68-4214-8df5-56569414d14d)
+![home (1)](https://github.com/user-attachments/assets/836d9a2f-bfba-4bf9-b5e2-4535d5e3ec74)
 
 ### Admin Panelde Hızlı Tur (Aşağıda gif yoksa bekleyin internet hızınıza bağlı yüklenecektir):
 ![Admin](https://github.com/user-attachments/assets/e3ebe387-dcb4-4ca2-9566-be90eb5ae412)
@@ -56,7 +56,7 @@
 ![kmhtgliOQmH-z-0-y-66bbe3c5dc99323a844b2bea](https://github.com/user-attachments/assets/932a0e6b-6987-4d5a-9649-a4f05ae3b87d)
 
 
-# =============> SON <=============
+# SON :
 
 ### Projeden Kullanılanlar
 ![](https://i.hizliresim.com/jg3h6w3.png)
