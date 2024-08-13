@@ -52,7 +52,8 @@
 ![](https://i.hizliresim.com/lejjhz2.gif)
 
 ### Giriş Yapma ve Admin Panelde Menülerde Gezinme (Aşağıda gif yoksa bekleyin internet hızınıza bağlı yüklenecektir):
-![]([https://i.hizliresim.com/5i0gd59.png](https://i.hizliresim.com/9en7eky.gif))
+![kmhtgliOQmH-z-0-y-66bbe3c5dc99323a844b2bea](https://github.com/user-attachments/assets/932a0e6b-6987-4d5a-9649-a4f05ae3b87d)
+
 
 # =============> SON <=============
 
