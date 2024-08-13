@@ -1,0 +1,42 @@
+﻿@model EntityLayer.Concrete.ServiceSection
+@{
+    ViewData["Title"] = "UpdateServiceSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HİZMETLERİM</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Hizmet Güncelle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(x => x.ServiceSectionID)
+                <label for="skillName">Hizmet İsmi</label>
+                <input type="text" id="skillName" placeholder="Hizmet İsmi" asp-for="ServiceName" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName"> Hizmet Açıklama</label>
+                <input type="text" id="skillName" placeholder="Açıklama" asp-for="ServiceDescription" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Hizmet Iconu</label>
+                <input type="text" id="skillName" placeholder="Hizmet Iconu Linki" asp-for="ServiceSectionIconUrl" required>
+            </div>
+           
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/ServiceSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+

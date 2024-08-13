@@ -1,0 +1,99 @@
+﻿<div class="sidebar">
+    <div class="scrollbar-inner sidebar-wrapper">
+        <div class="user">
+            <div class="photo">
+                <img src="~/img/profile.jpg">
+            </div>
+            <div class="info">
+                <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+                    <span>
+                        Kişi İsmi
+                        <span class="user-level">Yönetici</span>
+                    </span>
+                </a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <ul class="nav">
+            <li class="nav-item @(ViewBag.ActiveMenu == "AdminPanelMainPage" ? "active" : "")">
+                <a href="~/Admin/AdminPanelMainPage">
+                    <i class="fa-solid fa-house"></i>
+                    <p>Anasayfa</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ActiveMenu == "AdminSection" ? "active" : "")">
+                <a href="~/Admin/AdminSection">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <p>Admin Ayarları</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ActiveMenu == "AboutSection" ? "active" : "")">
+                <a href="~/Admin/AboutSection">
+                    <i class="fa-solid fa-address-card"></i>
+                    <p>Hakkımda</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ActiveMenu == "ServiceSection" ? "active" : "")">
+                <a href="~/Admin/ServiceSection">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <p>Hizmetlerim</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ActiveMenu == "ExperienceSection" ? "active" : "")">
+                <a href="~/Admin/ExperienceSection">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <p>Yeteneklerim</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ActiveMenu == "PortfolioSection" ? "active" : "")">
+                <a href="~/Admin/PortfolioSection">
+                    <i class="fa-solid fa-address-book"></i>
+                    <p>Portfolyem</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ActiveMenu == "BlogSection" ? "active" : "")">
+                <a href="~/Admin/BlogSection">
+                    <i class="fa-brands fa-blogger"></i>
+                    <p>Bloglarım</p>
+                </a>
+            </li>
+            <li class="nav-item @(ViewBag.ActiveMenu == "ContactSection" ? "active" : "")">
+                <a href="~/Admin/ContactSection">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>İletişime Geçenler</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" id="logout-link" data-url="@Url.Action("Logout", "Home")">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <p>Çıkış Yap</p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+    </div>
+<script>
+document.getElementById('logout-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Bağlantının varsayılan davranışını engelle
+
+    // AJAX POST isteği ile çıkış yapma
+    fetch(this.getAttribute('data-url'), {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+        },
+        credentials: 'same-origin'
+    }).then(response => {
+        if (response.ok) {
+            window.location.href = '@Url.Action("Index", "Home")'; // Çıkış yapıldıktan sonra yönlendirmek istediğiniz sayfa
+        } else {
+            alert('Çıkış yaparken bir hata oluştu.');
+        }
+    }).catch(error => {
+        console.error('Çıkış yapma hatası:', error);
+    });
+});
+</script>

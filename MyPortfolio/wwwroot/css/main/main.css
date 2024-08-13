@@ -1,0 +1,84 @@
+﻿/* Modal Background */
+.modal-content {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Header */
+.modal-header {
+    background-color: #EF233C;
+    color: #ffffff;
+    border-bottom: none;
+    padding: 15px 20px;
+}
+
+    .modal-header .modal-title {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .modal-header .close {
+        font-size: 1.2em;
+        opacity: 0.8;
+    }
+
+        .modal-header .close:hover {
+            opacity: 1;
+        }
+
+/* Modal Body */
+.modal-body {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.speciality-details {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .speciality-details h3 {
+        color: #ff0000;
+        margin-bottom: 10px;
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+
+    .speciality-details p {
+        color: #333;
+        margin: 5px 0;
+    }
+
+/* Modal Footer */
+.modal-footer {
+    background-color: #ffffff;
+    border-top: none;
+    padding: 15px 20px;
+}
+
+    .modal-footer .btn {
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+/* Close Button */
+.close span {
+    color: #ffffff;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+    .btn-primary:hover {
+        background-color: #cc0000;
+        border-color: #cc0000;
+    }

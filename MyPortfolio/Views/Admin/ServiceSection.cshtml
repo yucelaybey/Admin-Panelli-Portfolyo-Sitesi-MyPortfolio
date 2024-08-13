@@ -1,0 +1,60 @@
+﻿@using EntityLayer.Concrete
+@model List<ServiceSection>
+
+@{
+    ViewData["Title"] = "ServiceSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Section</title>
+    <link rel="stylesheet" href="~/css/table/tabless.css" />
+</head>
+<body>
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <h2>Hizmetlerim</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Hizmet İsmi</th>
+                        <th style="text-align:center">Hizmet Açıklaması</th>
+                        <th style="text-align:center">Hizmet İconu</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="50" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.ServiceSectionID</td>
+                                <td style="text-align:center">@item.ServiceName</td>
+                                <td style="text-align:center">@item.ServiceDescription</td>
+                                <td style="text-align:center"><i class="@item.ServiceSectionIconUrl"></i></td>
+                                <td style="text-align:center"><a href="/Admin/DeleteServiceSection/@item.ServiceSectionID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:center"><a href="/Admin/UpdateServiceSection/@item.ServiceSectionID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a href="/Admin/AddServiceSection/" class="btn btn-outline-info">Yeni Hizmet Ekle</a>
+        </div>
+    </div>
+</body>
+</html>

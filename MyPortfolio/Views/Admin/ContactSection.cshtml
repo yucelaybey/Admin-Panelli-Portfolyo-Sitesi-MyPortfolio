@@ -1,0 +1,133 @@
+﻿@using EntityLayer.Concrete
+@model List<ContactSection>
+
+@{
+    ViewData["Title"] = "ContactSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İLETİŞİME GEÇENLER</title>
+    <link rel="stylesheet" href="~/css/table/tabless.css" />
+</head>
+<body>
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <h2>İletişime Geçenler</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Kişi İsmi</th>
+                        <th style="text-align:center">Kişi Mail</th>
+                        <th style="text-align:center">Konu</th>
+                        <th style="text-align:center">Mesaj</th>
+                        <th style="text-align:center">Tüm Detayları Gör</th>
+                        <th style="text-align:center">Sil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="50" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.ContactSectionID</td>
+                                <td style="text-align:center">@item.ContactName</td>
+                                <td style="text-align:center">@item.ContactMail</td>
+                                <td style="text-align:center">@item.ContactSubject</td>
+                                <td style="text-align:center">@item.ContactMessage</td>
+                                <td style="text-align:center">
+                                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#detailsModal-@item.ContactSectionID">
+                                        Tüm Detayları Gör
+                                    </button>
+                                    <!-- Details Modal -->
+                                    <div class="modal fade" id="detailsModal-@item.ContactSectionID" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel-@item.ContactSectionID" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" style="max-width: 70%;" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="detailsModalLabel-@item.ContactSectionID">Tüm Detaylar</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="contactName-@item.ContactSectionID">Kişi İsmi</label>
+                                                        <input type="text" id="contactName-@item.ContactSectionID" class="form-control" value="@item.ContactName" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contactMail-@item.ContactSectionID">Kişi Mail</label>
+                                                        <input type="email" id="contactMail-@item.ContactSectionID" class="form-control" value="@item.ContactMail" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contactSubject-@item.ContactSectionID">Konu</label>
+                                                        <input type="text" id="contactSubject-@item.ContactSectionID" class="form-control" value="@item.ContactSubject" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contactMessage-@item.ContactSectionID">Mesaj</label>
+                                                        <textarea id="contactMessage-@item.ContactSectionID" class="form-control" rows="5" disabled>@item.ContactMessage</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal" data-toggle="modal" data-target="#confirmDeleteModal-@item.ContactSectionID">
+                                                        Bağlantıyı Sil
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kapat</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="text-align:center">
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteModal-@item.ContactSectionID">
+                                        Sil
+                                    </button>
+                                    <!-- Confirm Delete Modal -->
+                                    <div class="modal fade" id="confirmDeleteModal-@item.ContactSectionID" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel-@item.ContactSectionID" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div style="border: 2px solid #007bff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmDeleteModalLabel-@item.ContactSectionID">Bağlantı Silme Onayı</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <b style="color:red">Bu kişinin bağlantısını silmek istediğinize emin misiniz?</b>
+                                                    <p><strong>Kişi İsmi:</strong> @item.ContactName</p>
+                                                    <p><strong>Kişi Mail Adresi:</strong> @item.ContactMail</p>
+                                                    <p><strong>Konu:</strong> @item.ContactSubject</p>
+                                                    <p><strong>Kişinin Mesajı:</strong> @item.ContactMessage</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form method="post" action="/Admin/DeleteContactSection/@item.ContactSectionID">
+                                                        <button type="submit" class="btn btn-outline-danger">Eminim Sil</button>
+                                                    </form>
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">İptal</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IdentityUser
+@{
+    ViewData["Title"] = "Yeni Admin Ekle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Ekle</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="text-align: center;">Admin Ekle</h2>
+        <form asp-action="AddAdminSection" method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" placeholder="Email" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <input type="password" id="password" name="Password" placeholder="Şifre Gir" required />
+            </div>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="text-danger">
+                    @Html.ValidationSummary(true)
+                </div>
+            }
+
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AdminSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>

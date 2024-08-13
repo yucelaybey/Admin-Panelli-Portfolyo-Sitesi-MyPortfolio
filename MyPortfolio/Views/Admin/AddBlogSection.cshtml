@@ -1,0 +1,52 @@
+﻿@model MyPortfolio.Models.AddBlogSectionViewModel
+
+@{
+    ViewData["Title"] = "AddBlogSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Ekle</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="text-align: center;">Blog Ekle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Blog İsmi</label>
+                <input type="text" id="title" name="BlogSection.BlogName" placeholder="Blog İsmi" asp-for="BlogSection.BlogName" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Blog Açıklaması:</label>
+                <textarea id="description" name="BlogSection.BlogDescription" placeholder="Açıklama yaz" rows="4" asp-for="BlogSection.BlogDescription" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="blogTime">Blog Yükleme Tarihi (Otomatik)</label>
+                <input type="text" id="blogTime" value="@DateTime.Now.ToShortDateString()" placeholder="Blog Yükleme Tarihi" disabled />
+                <input type="hidden" id="blogTimeHidden" name="BlogSection.BlogTime" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")" />
+            </div>
+            <div class="form-group">
+                <label for="blogPicture">Blog Resmi (Kaynak URL Giriniz !)</label>
+                <input type="text" id="blogPicture" name="BlogSection.BlogPicture" placeholder="Blog Resmi" asp-for="BlogSection.BlogPicture" required />
+            </div>
+            <div class="form-group">
+                <label for="category">Kategori</label>
+                @Html.DropDownListFor(
+                         model => model.BlogSection.BlogCategory,
+                         new SelectList(Model.PortfolioCategories, "CategoryName", "CategoryName"),
+                         "Seçiniz",
+                         new { @class = "form-control", id = "category" }
+                         )
+            </div>
+
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/BlogSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>

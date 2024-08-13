@@ -1,0 +1,43 @@
+﻿@model EntityLayer.Concrete.HomeSection
+@{
+    ViewData["Title"] = "UpdateHomeSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Bilgilerim</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Kişisel Bilgileri Güncelle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(x => x.HomeSectionID)
+                <label for="skillName">İsmin</label>
+                <input type="text" id="skillName" placeholder="Hizmet İsmi" asp-for="Name" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Mailin</label>
+                <input type="text" id="skillName" placeholder="Hizmet Yeri" asp-for="Mail" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Telefonun</label>
+                <input type="text" id="skillName" placeholder="Hizmet Iconu Linki" asp-for="Phone" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Adresin</label>
+                <input type="text" id="skillName" placeholder="Hizmet Iconu Linki" asp-for="Address" required>
+            </div>
+
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AdminPanelMainPage/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>
+

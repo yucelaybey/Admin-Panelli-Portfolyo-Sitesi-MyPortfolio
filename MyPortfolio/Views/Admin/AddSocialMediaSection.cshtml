@@ -1,0 +1,33 @@
+﻿@model EntityLayer.Concrete.SocialMediaSection
+@{
+    ViewData["Title"] = "AddSocialMediaSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosyal Media Bağlantısı Ekle</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Sosyal Media Bağlantısı Ekle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="skillName">Sosyal Media Iconu</label>
+                <input type="text" id="skillName" placeholder="Sosyal Media Iconu" asp-for="SocialMediaIconURL" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Sosyal Media Linki (URL olarak giriniz !!!)</label>
+                <input type="text" id="skillName" placeholder="Sosyal Media Link" asp-for="SocialMediaLink" required>
+            </div>
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AdminPanelMainPage/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>
+

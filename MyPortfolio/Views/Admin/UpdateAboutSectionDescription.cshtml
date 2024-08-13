@@ -1,0 +1,29 @@
+﻿@model EntityLayer.Concrete.AboutSectionDescription
+@{
+    ViewData["Title"] = "UpdateAboutSectionDescription";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Açıklamayı Güncelle</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Açıklamayı Güncelle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(x => x.AboutSectionDescriptionID)
+                <label for="skillName">Açıklama</label>
+                <input type="text" id="skillName" placeholder="Açıklama" asp-for="Description" required>
+            </div>
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AboutSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,368 @@
+﻿@model AdminPanelMainPageListViewModel
+
+@{
+    ViewData["Title"] = "AdminPanelMainPage";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BİLGİLERİM</title>
+    <link rel="stylesheet" href="~/css/table/tabless.css" />
+    <link rel="stylesheet" href="~/css/table/adminmain.css" />
+
+</head>
+<body>
+    <div class="info-boxes">
+        <div class="info-box">
+            <i class="fa-brands fa-blogger"></i> <!-- Icon -->
+            <div style="color:red" class="info-box-title">Blog Sayımız</div>
+            <div class="info-box-content">@Model.BlogSections.Count</div>
+        </div>
+        <div class="info-box">
+            <i class="fa-solid fa-address-book"></i> <!-- Icon -->
+            <div style="color:red" class="info-box-title">Portfolio Sayımız</div>
+            <div class="info-box-content">@Model.PortfolioSections.Count</div>
+        </div>
+        <div class="info-box">
+            <i class="fa-solid fa-address-card"></i> <!-- Icon -->
+            <div style="color:red" class="info-box-title">Yeteneklerimiz</div>
+            <div class="info-box-content">@Model.AboutSections.Count</div>
+        </div>
+        <div class="info-box">
+            <i class="fa-solid fa-comment"></i> <!-- Icon -->
+            <div style="color:red" class="info-box-title">Toplam Yorumlar</div>
+            <div class="info-box-content">@Model.Comments.Count</div>
+        </div>
+        <div class="info-box">
+            <i class="fa-solid fa-envelope"></i> <!-- Icon -->
+            <div style="color:red" class="info-box-title">Toplam İletişime Geçen Sayısı</div>
+            <div class="info-box-content">@Model.ContactSections.Count</div>
+        </div>
+        <div class="info-box">
+            <i class="fa-solid fa-thumbs-up"></i> <!-- Icon -->
+            <div style="color:red" class="info-box-title">Toplam Referans Sayısı</div>
+            <div class="info-box-content">@Model.TestimonialSections.Count</div>
+        </div>
+    </div>
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>Tecrübeler Sergisi</h2>
+                <a href="/Admin/AddShowcaseExperience" class="btn btn-outline-info">Yeni Sergi Ekle</a>
+            </div>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Resim</th>
+                        <th style="text-align:center">ResimUrl</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.ShowcaseExperiences.Any())
+                    {
+                        <tr>
+                            <td colspan="50" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.ShowcaseExperiences)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.ShowcaseExperienceID</td>
+                                <td style="text-align:center"><img style="height:48px; width:auto;" src="@item.PictureURL" /></td>
+                                <td style="text-align:center">@item.PictureURL</td>
+                                <td style="text-align:right"><a href="/Admin/DeleteShowcaseExperience/@item.ShowcaseExperienceID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:right"><a href="/Admin/UpdateShowcaseExperience/@item.ShowcaseExperienceID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>Referanslar</h2>
+                <a href="/Admin/AddTestimonialSection" class="btn btn-outline-info">Yeni Referans Ekle</a>
+            </div>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Referans Resmi</th>
+                        <th style="text-align:center">Referans İsmi</th>
+                        <th style="text-align:center">Referans Ünvanı</th>
+                        <th style="text-align:center">Referans Açıklaması</th>
+                        <th style="text-align:center">Tüm Detayları Gör</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.TestimonialSections.Any())
+                    {
+                        <tr>
+                            <td colspan="50" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.TestimonialSections)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.TestimonialSectionID</td>
+                                <td style="text-align:center"><img style="height:48px; width:auto;" src="@item.ProfilPictureUrl" /></td>
+                                <td style="text-align:center">@item.ProfilName</td>
+                                <td style="text-align:center">@item.ProfilApellation</td>
+                                <td style="text-align:center">@item.ProfilDescription</td>
+                                <td style="text-align:center">
+                                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#detailsModal-@item.TestimonialSectionID">
+                                        Tüm Detayları Gör
+                                    </button>
+                                    <!-- Details Modal -->
+                                    <div class="modal fade" id="detailsModal-@item.TestimonialSectionID" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel-@item.TestimonialSectionID" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" style="max-width: 70%;" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="detailsModalLabel-@item.TestimonialSectionID">Tüm Detaylar</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div style="display:flex; flex-direction: column; align-items:center;" class="form-group">
+                                                        <label for="contactMessage-@item.TestimonialSectionID">Referans Resmi</label>
+                                                        <img style="height:48px; width:48px;" src="@item.ProfilPictureUrl" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contactName-@item.TestimonialSectionID">Referans İsmi</label>
+                                                        <input type="text" id="contactName-@item.TestimonialSectionID" class="form-control" value="@item.ProfilName" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contactMail-@item.TestimonialSectionID">Referans Ünvanı</label>
+                                                        <input type="email" id="contactMail-@item.TestimonialSectionID" class="form-control" value="@item.ProfilApellation" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contactSubject-@item.TestimonialSectionID">Referans Açıklaması</label>
+                                                        <input type="text" id="contactSubject-@item.TestimonialSectionID" class="form-control" value="@item.ProfilDescription" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="/Admin/UpdateTestimonialSection/@item.TestimonialSectionID" class="btn btn-outline-warning">Düzenle</a>
+                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal" data-toggle="modal" data-target="#confirmDeleteModal-@item.TestimonialSectionID">
+                                                        Referansı Sil
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kapat</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="text-align:center">
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteModal-@item.TestimonialSectionID">
+                                        Sil
+                                    </button>
+                                    <!-- Confirm Delete Modal -->
+                                    <div class="modal fade" id="confirmDeleteModal-@item.TestimonialSectionID" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel-@item.TestimonialSectionID" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div style="border: 2px solid #007bff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmDeleteModalLabel-@item.TestimonialSectionID">Referans Silme Onayı</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <b style="color:red">Bu referansı silmek istediğinize emin misiniz?</b>
+                                                    <p style="display:flex; flex-direction: column; align-items:center;"><strong>Referans Resmi:</strong><img style="height:48px; width:48px;" src="@item.ProfilPictureUrl" /></p>
+                                                    <p><strong>Referans İsmi:</strong> @item.ProfilName</p>
+                                                    <p><strong>Referans Ünvanı:</strong> @item.ProfilApellation</p>
+                                                    <p><strong>Referans Açıklaması:</strong> @item.ProfilDescription</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form method="post" action="/Admin/DeleteTestimonialSection/@item.TestimonialSectionID">
+                                                        <button type="submit" class="btn btn-outline-danger">Eminim Sil</button>
+                                                    </form>
+                                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">İptal</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="text-align:center"><a href="/Admin/UpdateTestimonialSection/@item.TestimonialSectionID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div style="display:flex;" class="table-container-wrapper">
+        <div class="table-container">
+            <h2>
+                Açıklama
+                <a href="/Admin/AddHomeSectionDescription/" class="btn btn-outline-info">Yeni Açıklama Ekle</a>
+            </h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Açıklama</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.HomeSectionDescriptions.Any())
+                    {
+                        <tr>
+                            <td colspan="5" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.HomeSectionDescriptions)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.HomeSectionDescriptionID</td>
+                                <td style="text-align:center">@item.Description</td>
+                                <td style="text-align:right"><a href="/Admin/DeleteHomeSectionDescription/@item.HomeSectionDescriptionID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:right"><a href="/Admin/UpdateHomeSectionDescription/@item.HomeSectionDescriptionID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <h2>
+                Kişisel Bilgilerim
+                <a href="/Admin/AddHomeSection/" class="btn btn-outline-info">Yeni Kişisel Bilgi Ekle</a>
+            </h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">İsmin</th>
+                        <th style="text-align:center">Mailin</th>
+                        <th style="text-align:center">Telefonun</th>
+                        <th style="text-align:center">Adresin</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.HomeSections.Any())
+                    {
+                        <tr>
+                            <td colspan="50" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.HomeSections)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.HomeSectionID</td>
+                                <td style="text-align:center">@item.Name</td>
+                                <td style="text-align:center">@item.Mail</td>
+                                <td style="text-align:center">@item.Phone</td>
+                                <td style="text-align:center">@item.Address</td>
+                                <td style="text-align:right"><a href="/Admin/DeleteHomeSection/@item.HomeSectionID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:right"><a href="/Admin/UpdateHomeSection/@item.HomeSectionID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <h2>
+                Sosyal Media Linkleri
+                <a href="/Admin/AddSocialMediaSection/" class="btn btn-outline-info">Yeni Sosyal Medya Bağlantısı Ekle</a>
+            </h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Sosyal Media İconu</th>
+                        <th style="text-align:center">Sosyal Media Bağlantısı</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.SocialMediaSections.Any())
+                    {
+                        <tr>
+                            <td colspan="50" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.SocialMediaSections)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.SocialMediaSectionID</td>
+                                <td style="text-align:center"><i class="@item.SocialMediaIconURL"></i></td>
+                                <td style="text-align:center">@item.SocialMediaLink</td>
+                                <td style="text-align:center"><a href="/Admin/DeleteSocialMediaSection/@item.SocialMediaSectionID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:center"><a href="/Admin/UpdateSocialMediaSection/@item.SocialMediaSectionID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>İletişime Geçen Son 5 Kişi</h2>
+                <a href="/Admin/ContactSection" class="btn btn-outline-warning">Sayfaya Git</a>
+            </div>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Kişi İsmi</th>
+                        <th style="text-align:center">Mail</th>
+                        <th style="text-align:center">Konu</th>
+                        <th style="text-align:center">Mesaj</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.ContactSections.Any())
+                    {
+                        <tr>
+                            <td colspan="50" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.ContactSections.TakeLast(5))
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.ContactSectionID</td>
+                                <td style="text-align:center">@item.ContactName</td>
+                                <td style="text-align:center">@item.ContactMail</td>
+                                <td style="text-align:center">@item.ContactSubject</td>
+                                <td style="text-align:center">@item.ContactMessage</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

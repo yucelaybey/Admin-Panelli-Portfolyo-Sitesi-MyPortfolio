@@ -1,0 +1,100 @@
+﻿@model PortfolioSectionListViewModel
+
+@{
+    ViewData["Title"] = "Portfolyo";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolyo Yönetimi</title>
+    <link rel="stylesheet" href="~/css/table/tabless.css" />
+</head>
+<body>
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <h2>Portfolyo Kategorileri</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Kategori</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.PortfolioCategories.Any())
+                    {
+                        <tr>
+                            <td colspan="4" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.PortfolioCategories)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.PortfolioCategoryID</td>
+                                <td style="text-align:center">@item.CategoryName</td>
+                                <td style="text-align:center"><a href="/Admin/DeletePortfolioCategory/@item.PortfolioCategoryID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:center"><a href="/Admin/UpdatePortfolioCategory/@item.PortfolioCategoryID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a href="/Admin/AddPortfolioCategory/" class="btn btn-outline-info">Yeni Kategori Ekle</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <h2>Portfolyo Projeleri</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Proje İsmi</th>
+                        <th style="text-align:center">Proje Açıklaması</th>
+                        <th style="text-align:center">Kategori</th>
+                        <th style="text-align:center">Proje Resmi</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.PortfolioSections.Any())
+                    {
+                        <tr>
+                            <td colspan="7" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.PortfolioSections)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.PortfolioSectionID</td>
+                                <td style="text-align:center">@item.Title</td>
+                                <td style="text-align:center">@item.Description</td>
+                                <td style="text-align:center">@item.CategoryName</td>
+                                <td style="text-align:center"><img src="@item.ProjectPicture" alt="Image" class="img-fluid" style="max-width: 100px; height: auto;" /></td>
+                                <td style="text-align:center"><a href="/Admin/DeletePortfolioSection/@item.PortfolioSectionID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:center"><a href="/Admin/UpdatePortfolioSection/@item.PortfolioSectionID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a href="/Admin/AddPortfolioSection/" class="btn btn-outline-info">Yeni Proje Ekle</a>
+        </div>
+    </div>
+</body>
+</html>

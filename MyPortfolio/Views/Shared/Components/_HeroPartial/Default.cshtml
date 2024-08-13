@@ -1,0 +1,100 @@
+﻿@model MyPortfolio.Models.HomeSectionToDescriptionViewModel
+
+<div class="hero" id="home">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-12 col-md-6">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <p>I'm</p>
+                        @foreach (var item in Model.HomeSections)
+                        {
+                            <h1>@item.Name</h1>
+                        }
+                        <h2></h2>
+                        @foreach (var item in Model.HomeSectionDescriptions)
+                        {
+                            <div class="typed-text">@item.Description</div>
+                        }
+                    </div>
+                    <div class="hero-btn">
+                        <a class="btn" href="#contact">Beni İşe Al</a>
+                        <a class="btn" href="#contact">İletişime Geç</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 d-none d-md-block">
+                <div class="hero-image">
+                    @if (Model?.ShowcaseExperiences != null && Model.ShowcaseExperiences.Any())
+                    {
+                        <div class="slideshow">
+                            @foreach (var item in Model.ShowcaseExperiences)
+                            {
+                                <div class="slide">
+                                    <img src="@item.PictureURL" alt="Hero Image">
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <p>Resim Bulunamadı</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS -->
+<style>
+    .hero-image {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 600px; /* Yüksekliği ihtiyaca göre ayarlayın */
+    }
+
+    .slideshow {
+        display: flex;
+        transition: transform 1s ease-in-out;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    img {
+        width: auto;
+        height: auto;
+        display: block;
+        margin: auto; /* Ortalamak için */
+    }
+</style>
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const slideshow = document.querySelector('.slideshow');
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function moveToNextSlide() {
+            index = (index + 1) % totalSlides;
+            slideshow.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        setInterval(moveToNextSlide, 2000); // 2 saniyede bir geçiş
+    });
+</script>

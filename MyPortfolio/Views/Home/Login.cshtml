@@ -1,0 +1,19 @@
+﻿@model MyPortfolio.Models.LoginViewModel
+
+<form asp-controller="Home" asp-action="Login" method="post">
+    <div class="form-group">
+        <label asp-for="Email">E-posta</label>
+        <input asp-for="Email" class="form-control" placeholder="E-posta" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Password">Şifre</label>
+        <input asp-for="Password" type="password" class="form-control" placeholder="Şifre" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="RememberMe" type="checkbox" class="form-check-input" />
+        <label asp-for="RememberMe" class="form-check-label">Beni Hatırla</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Giriş Yap</button>
+</form>

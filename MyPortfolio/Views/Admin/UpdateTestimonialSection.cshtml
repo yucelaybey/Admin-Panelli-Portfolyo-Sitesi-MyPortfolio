@@ -1,0 +1,42 @@
+﻿@model EntityLayer.Concrete.TestimonialSection
+@{
+    ViewData["Title"] = "UpdateTestimonialSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referanslarımı Güncelle</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Referanslarımı Güncelle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(x => x.TestimonialSectionID)
+                <label for="skillName">Referans Resmi (URL olarak giriniz !!!)</label>
+                <input type="text" id="skillName" placeholder="Hizmet İsmi" asp-for="ProfilPictureUrl" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Referans İsmi</label>
+                <input type="text" id="skillName" placeholder="Referans İsmi" asp-for="ProfilName" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Referans Ünvanı</label>
+                <input type="text" id="skillName" placeholder="Referans Ünvanı" asp-for="ProfilApellation" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Referans Açıklaması</label>
+                <input type="text" id="skillName" placeholder="Referans Açıklaması" asp-for="ProfilDescription" required>
+            </div>
+
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AdminPanelMainPage/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>

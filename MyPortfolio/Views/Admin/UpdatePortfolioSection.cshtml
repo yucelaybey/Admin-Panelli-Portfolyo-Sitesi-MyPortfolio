@@ -1,0 +1,45 @@
+﻿@model MyPortfolio.Models.AddPortfolioSectionViewModel
+
+@{
+    ViewData["Title"] = "UpdatePortfolioSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proje Güncelle</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="text-align: center;">Proje Güncelle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(model => model.PortfolioSection.PortfolioSectionID)
+                <label for="title">Proje İsmi</label>
+                <input type="text" id="title" name="PortfolioSection.Title" placeholder="Proje İsmi" asp-for="PortfolioSection.Title" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Proje Açıklaması:</label>
+                <textarea id="description" name="PortfolioSection.Description" placeholder="Açıklama yaz" rows="4" asp-for="PortfolioSection.Description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="projectPicture">Proje Resmi (Kaynak URL Giriniz !)</label>
+                <input type="text" id="projectPicture" name="PortfolioSection.ProjectPicture" placeholder="Proje Resmi" asp-for="PortfolioSection.ProjectPicture" required />
+            </div>
+            <div class="form-group">
+                <label for="category">Kategori</label>
+                @Html.DropDownListFor(model => model.PortfolioSection.CategoryName,
+                         Model.Categories,
+                         "Seçiniz",
+                         new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-outline-info">Güncelle</button>
+            <a href="/Admin/PortfolioSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>

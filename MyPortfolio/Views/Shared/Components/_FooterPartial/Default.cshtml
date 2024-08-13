@@ -1,0 +1,29 @@
+﻿@model MyPortfolio.Models.HomeSectionToSocialMediaSection
+
+<div class="footer wow fadeIn" data-wow-delay="0.3s">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="footer-info">
+                @foreach (var item in Model.HomeSections)
+                {
+                    <h2>@item.Name</h2>
+                    <h3>@item.Address</h3>
+                    <div class="footer-menu">
+                        <p>@item.Phone</p>
+                        <p>@item.Mail</p>
+                    </div>
+                }
+                
+                <div class="footer-social">
+                    @foreach (var item in Model.SocialMediaSections)
+                    {
+                        <a href="@item.SocialMediaLink"><i class="@item.SocialMediaIconURL"></i></a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>&copy; <a href="#">Portfolyem - @DateTime.Now.Year</a>, Tüm Hakları Saklıdır</p>
+        </div>
+    </div>
+</div>

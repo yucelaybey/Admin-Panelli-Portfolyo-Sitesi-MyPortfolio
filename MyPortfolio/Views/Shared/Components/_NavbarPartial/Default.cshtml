@@ -1,0 +1,83 @@
+﻿<style>
+    /* Sadece giriş yap modalına özel stil */
+    #loginModal .modal-dialog {
+        width: 400px; /* Modal genişliği */
+        max-width: 80%; /* Ekran boyutuna göre genişlik sınırla */
+        margin: 0 auto; /* Ortalamak için otomatik margin */
+        top: 50%; /* Sayfanın ortasına yerleştirmek için */
+        transform: translateY(-50%); /* Tam olarak ortalamak için yukarı kaydır */
+    }
+
+    #loginModal .modal-content {
+        border-radius: 8px;
+    }
+
+    #loginModal .modal-header {
+        background-color: #EF233C;
+        color: white;
+    }
+
+    #loginModal .modal-body {
+        min-height: 200px; /* Modal yüksekliği */
+    }
+
+    .nav-link.login-link {
+        color: #EF233C;
+        cursor: pointer;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Navbar -->
+<div class="navbar navbar-expand-lg bg-light navbar-light">
+    <div class="container-fluid">
+        <a href="~/Home/Index" class="navbar-brand">Portfolyem</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a href="#home" class="nav-item nav-link active">Anasayfa</a>
+                <a href="#about" class="nav-item nav-link">Hakkımda</a>
+                <a href="#service" class="nav-item nav-link">Hizmetlerim</a>
+                <a href="#experience" class="nav-item nav-link">Yeteneklerim</a>
+                <a href="#portfolio" class="nav-item nav-link">Portfolyem</a>
+                <a href="#blog" class="nav-item nav-link">Bloglarım</a>
+                <a href="#contact" class="nav-item nav-link">İletişim</a>
+                <a href="#" class="nav-item nav-link login-link" data-toggle="modal" data-target="#loginModal">Giriş Yap</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Giriş Yap</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync("/Views/Home/Login.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.ShowLoginModal)
+{
+    <script>
+        $(document).ready(function () {
+            $('#loginModal').modal('show');
+        });
+    </script>
+}
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

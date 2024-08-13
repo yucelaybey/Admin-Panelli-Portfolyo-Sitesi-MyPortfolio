@@ -1,0 +1,79 @@
+﻿.info-boxes {
+    display: flex;
+    justify-content: center;
+    padding-left: 300px;
+    width: calc(100% - 40px);
+    box-sizing: border-box;
+}
+
+.info-box {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+    position: relative;
+    height: 150px; /* Kare olacak şekilde yükseklik */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    animation: pulse 1.5s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 0, 255, 0.4);
+}
+
+.info-box-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.info-box-content {
+    font-size: 1.1em;
+}
+
+.info-box i {
+    font-size: 2em; /* Icon boyutu */
+    margin-bottom: 10px;
+}
+
+.table-container-wrapper {
+    margin: 20px 0;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 0, 255, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.7), 0 0 25px rgba(0, 255, 0, 0.7), 0 0 25px rgba(0, 0, 255, 0.7);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(255, 0, 0, 0.4), 0 0 15px rgba(0, 255, 0, 0.4), 0 0 15px rgba(0, 0, 255, 0.4);
+    }
+}
+
+/* Butonları sağa hizalamak için stil */
+.styled-table td, .styled-table th {
+    text-align: right; /* Butonları sağa hizalar */
+}
+
+.table-container-wrapper .table-container {
+    display: flex;
+    flex-direction: column;
+}
+
+    .table-container-wrapper .table-container h2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table-container-wrapper .table-container a.btn {
+        margin-left: auto;
+    }

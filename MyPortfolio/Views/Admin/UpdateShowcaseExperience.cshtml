@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.ShowcaseExperience
+@{
+    ViewData["Title"] = "UpdateShowcaseExperience";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sergiyi Düzenle</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Sergiyi Düzenle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(x => x.ShowcaseExperienceID)
+                <label for="skillName">Sergilenecek Resim Linki (URL Giriniz !!!)</label>
+                <input type="text" id="skillName" placeholder="Kategori İsmi" asp-for="PictureURL" required>
+            </div>
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AdminPanelMainPage/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>
+

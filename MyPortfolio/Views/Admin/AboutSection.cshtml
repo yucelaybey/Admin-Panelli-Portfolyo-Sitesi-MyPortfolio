@@ -1,0 +1,101 @@
+﻿@model AboutSectionViewModel
+
+@{
+    ViewData["Title"] = "BlogSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAKKIMDA</title>
+    <link rel="stylesheet" href="~/css/table/tabless.css" />
+</head>
+<body>
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <h2>Açıklama</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Açıklama</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.AboutSectionDescriptions.Any())
+                    {
+                        <tr>
+                            <td colspan="5" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.AboutSectionDescriptions)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.AboutSectionDescriptionID</td>
+                                <td style="text-align:center">@item.Description</td>
+                                <td style="text-align:center"><a href="/Admin/DeleteAboutSectionDescription/@item.AboutSectionDescriptionID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:center"><a href="/Admin/UpdateAboutSectionDescription/@item.AboutSectionDescriptionID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a href="/Admin/AddAboutSectionDescription/" class="btn btn-outline-info">Yeni Açıklama Ekle</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <h2>DENEYİMLER</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Yetenek İsmi</th>
+                        <th style="text-align:center">Yetenek Seviyesi</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.AboutSections)
+                    {
+                        // Yetenek seviyesini bir bar olarak göster
+                        var levelClass = item.SpecialityLevel switch
+                        {
+                            >= 80 => "bar-red",
+                            >= 60 => "bar-blue",
+                            >= 40 => "bar-green",
+                            _ => "bar-yellow"
+                        };
+
+                        <tr>
+                            <td style="text-align:center">@item.AboutSectionID</td>
+                            <td style="text-align:center">@item.SpecialityName</td>
+                            <td style="text-align:center">
+                                <div class="bar @levelClass" style="width:@item.SpecialityLevel%;"></div>
+                                <span>@item.SpecialityLevel</span>
+                            </td>
+                            <td style="text-align:center"><a href="/Admin/DeleteAboutSection/@item.AboutSectionID" class="btn btn-outline-danger">Sil</a></td>
+                            <td style="text-align:center"><a href="/Admin/UpdateAboutSection/@item.AboutSectionID" class="btn btn-outline-warning">Düzenle</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a href="/Admin/AddAboutSection/" class="btn btn-outline-info">Yeni Deneyim Ekle</a>
+        </div>
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,52 @@
+﻿@model UpdateBlogSectionViewModel
+@{
+    ViewData["Title"] = "UpdateBlogSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Güncelle</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style="text-align: center;">Blog Güncelle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(model => model.BlogSection.BlogSectionID)
+                <label for="title">Blog İsmi</label>
+                <input type="text" id="title" name="BlogSection.BlogName" placeholder="Blog İsmi" asp-for="BlogSection.BlogName" required />
+            </div>
+            <div class="form-group">
+                <label for="description">Blog Açıklaması:</label>
+                <textarea id="description" name="BlogSection.BlogDescription" placeholder="Açıklama yaz" rows="4" asp-for="BlogSection.BlogDescription" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="blogTime">Blog Yazma Tarihi</label>
+                <input type="text" id="blogTime" name="BlogSection.BlogTime" placeholder="Blog Yazma Tarihi" asp-for="BlogSection.BlogTime" required disabled />
+            </div>
+            <div class="form-group">
+                <label for="blogPicture">Blog Resmi (Kaynak URL Giriniz !)</label>
+                <input type="text" id="blogPicture" name="BlogSection.BlogPicture" placeholder="Blog Resmi" asp-for="BlogSection.BlogPicture" required />
+            </div>
+            <div class="form-group">
+                <label for="category">Kategori</label>
+                @Html.DropDownListFor(model => model.BlogSection.BlogCategory,
+                         Model.PortfolioCategories.Select(c => new SelectListItem
+                {
+                    Value = c.CategoryName,
+                    Text = c.CategoryName
+                }),
+                         "Seçiniz",
+                         new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-outline-info">Güncelle</button>
+            <a href="/Admin/BlogSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>

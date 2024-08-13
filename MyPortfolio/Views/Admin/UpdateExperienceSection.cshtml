@@ -1,0 +1,41 @@
+﻿@model EntityLayer.Concrete.ExperienceSection
+@{
+    ViewData["Title"] = "UpdateExperienceSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECRÜBELERİM</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Tecrübeyi Güncelle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(x => x.ExperienceSectionID)
+                <label for="skillName">Hizmet İsmi</label>
+                <input type="text" id="skillName" placeholder="Hizmet İsmi" asp-for="ExperienceName" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Hizmet Yeri</label>
+                <input type="text" id="skillName" placeholder="Hizmet Yeri" asp-for="ExperienceLocation" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Hizmet Zamanı</label>
+                <input type="text" id="skillName" placeholder="Hizmet Iconu Linki" asp-for="ExperienceTime" required>
+            </div>
+            <div class="form-group">
+                <label for="skillName">Hizmet Açıklaması</label>
+                <input type="text" id="skillName" placeholder="Hizmet Açıklaması" asp-for="ExperienceDescription" required>
+            </div>
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/ExperienceSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>

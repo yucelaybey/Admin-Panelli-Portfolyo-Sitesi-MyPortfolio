@@ -1,0 +1,43 @@
+﻿@model MyPortfolio.Models.PortfolioSectionListViewModel
+
+<div class="portfolio" id="portfolio">
+    <div class="container">
+        <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
+            <p>Portfoyüm</p>
+            <h2>Mükemmel Portföyüm</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul id="portfolio-filter">
+                    <li data-filter="*" class="filter-active">All</li>
+                    @foreach (var item in Model.PortfolioCategories)
+                    {
+                        <li data-filter=".filter-@item.PortfolioCategoryID">@item.CategoryName</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="row portfolio-container">
+            @foreach (var item in Model.PortfolioCategories)
+            {
+                @foreach (var itemk in Model.PortfolioSections)
+                {
+                    @if (item.CategoryName == itemk.CategoryName)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-@item.PortfolioCategoryID wow fadeInUp" data-wow-delay="0.0s">
+                            <div class="portfolio-wrap">
+                                <div class="portfolio-img">
+                                    <img src="@itemk.ProjectPicture" alt="Image">
+                                </div>
+                                <div class="portfolio-text">
+                                    <h3>@itemk.Title</h3>
+                                    <a class="btn" href="@itemk.ProjectPicture" data-lightbox="portfolio">+</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>

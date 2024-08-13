@@ -1,0 +1,36 @@
+﻿@model EntityLayer.Concrete.AboutSection
+@{
+    ViewData["Title"] = "UpdateAboutSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAKKIMDA</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Yetenek Güncelle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                @Html.HiddenFor(x => x.AboutSectionID)
+                <label for="skillName">Yetenek Adı:</label>
+                <input type="text" id="skillName" placeholder="Yetenek Adı" asp-for="SpecialityName" required>
+            </div>
+            <div class="form-group">
+                <label for="skillLevel">Yetenek Seviyesi:</label>
+                <input type="range" id="skillLevel" min="0" max="100" value="@Model.SpecialityLevel" asp-for="SpecialityLevel" oninput="document.getElementById('skillLevelValue').innerText = this.value">
+                <span id="skillLevelValue">@Model.SpecialityLevel</span>
+            </div>
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AboutSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>
+
+

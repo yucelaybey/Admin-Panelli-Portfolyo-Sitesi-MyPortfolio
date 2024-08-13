@@ -1,0 +1,51 @@
+﻿@model EntityLayer.Concrete.ContactSection
+
+<div class="contact wow fadeInUp" data-wow-delay="0.1s" id="contact">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <div class="contact-form">
+                        <div id="success"></div>
+                        <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" enctype="multipart/form-data" action="/Home/AddContactSection">
+
+                            <div class="control-group">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" asp-for="ContactName" data-validation-required-message="Lütfen isminizi giriniz :" />
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" asp-for="ContactMail" data-validation-required-message="Lütfen mailinizi giriniz:" />
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="control-group">
+                                <input type="text" class="form-control" id="subject" placeholder="Subject" required="required" asp-for="ContactSubject" data-validation-required-message="Lütfen konuyu giriniz:" />
+                                <p class="help-block"></p>
+                            </div>
+                            <div class="control-group">
+                                <textarea class="form-control" id="message" placeholder="Message" required="required" asp-for="ContactMessage" data-validation-required-message="Lütfen mesajınızı giriniz:"></textarea>
+                                <p class="help-block"></p>
+                            </div>
+                            <div>
+                                <button class="btn" type="submit" id="sendMessageButton">Mesaj Gönder</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        window.onload = function () {
+            // İletişim kısmının id'si veya class'ını buraya yazın
+            var contactSection = document.getElementById("contact");
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+    </script>
+}

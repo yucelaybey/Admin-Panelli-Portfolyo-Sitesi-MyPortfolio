@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concrete.ShowcaseExperience
+
+@{
+    ViewData["Title"] = "AddShowcaseExperience";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERGİ</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Yeni Sergi Ekle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="description">Sergilenecek Resim Linki (URL Giriniz !!!)</label>
+                <input id="description" placeholder="Açıklama yaz" asp-for="PictureURL" required></input>
+            </div>
+            
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AdminPanelMainPage/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>
+

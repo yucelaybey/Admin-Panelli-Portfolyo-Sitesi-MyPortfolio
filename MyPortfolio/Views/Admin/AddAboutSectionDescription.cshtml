@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.AboutSectionDescription
+@{
+    ViewData["Title"] = "AddAboutSectionDescription";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAKKIMDA</title>
+    <link rel="stylesheet" href="~/css/form/formcss.css" />
+</head>
+<body>
+    <div class="form-container">
+        <h2 style=" text-align: center;">Açıklama Ekle</h2>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="description">Açıklama:</label>
+                <textarea id="description" placeholder="Açıklama yaz" rows="4" asp-for="Description" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-outline-info">Kaydet</button>
+            <a href="/Admin/AboutSection/" class="btn btn-outline-danger">İptal</a>
+        </form>
+    </div>
+</body>
+</html>
+
+

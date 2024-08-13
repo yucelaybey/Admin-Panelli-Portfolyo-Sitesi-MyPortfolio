@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("_HeadPartial")
+
+<body data-spy="scroll" data-target=".navbar" data-offset="51">
+    <!-- Nav Bar Start -->
+    @await Component.InvokeAsync("_NavbarPartial")
+    <!-- Nav Bar End -->
+
+    <!-- Hero Start -->
+    @await Component.InvokeAsync("_HeroPartial")
+    <!-- Hero End -->
+    <!-- About Start -->
+    @await Component.InvokeAsync("_AboutPartial")
+    <!-- About End -->
+    <!-- Service Start -->
+    @await Component.InvokeAsync("_ServicePartial")
+    <!-- Service End -->
+
+    <!-- Testimonial Start -->
+    @await Component.InvokeAsync("_TestimonialPartial")
+    <!-- Testimonial End -->
+
+    <!-- Experience Start -->
+    @await Component.InvokeAsync("_ExperiencePartial")
+    <!-- Job Experience End -->
+    
+    <!-- Portfolio Start -->
+    @await Component.InvokeAsync("_PortfolioPartial")
+    <!-- Portfolio End -->
+    
+    <!-- Contact Start -->
+    @await Html.PartialAsync("/Views/Home/AddContactSection.cshtml")
+    <!-- Contact End -->
+    <!-- Blog Start -->
+    @await Component.InvokeAsync("_BlogPartial")
+    <!-- Blog End -->
+    <!-- Footer Start -->
+    @await Component.InvokeAsync("_FooterPartial")
+    <!-- Footer End -->
+    <!-- Back to top button -->
+    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+    <!-- Pre Loader -->
+    <div id="loader" class="show">
+        <div class="loader"></div>
+    </div>
+
+
+    <!-- JavaScript Libraries -->
+    @await Component.InvokeAsync("_ScriptPartial")
+</body>
+</html>
+

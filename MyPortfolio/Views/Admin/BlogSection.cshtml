@@ -1,0 +1,157 @@
+﻿@model BlogSectionListViewModel
+
+@{
+    ViewData["Title"] = "BlogSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Yönetimi</title>
+    <link rel="stylesheet" href="~/css/table/tabless.css" />
+    <!-- Bootstrap CSS for Modal -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color:#f3f3f3;">
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <h2>Bloglarım</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Blog İsmi</th>
+                        <th style="text-align:center">Blog Açıklaması</th>
+                        <th style="text-align:center">Blog Kategorisi</th>
+                        <th style="text-align:center">Blog Tarihi</th>
+                        <th style="text-align:center">Blog Resmi</th>
+                        <th style="text-align:center">Blog Yorumlarını Gör</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.BlogSections.Any())
+                    {
+                        <tr>
+                            <td colspan="9" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.BlogSections)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.BlogSectionID</td>
+                                <td style="text-align:center">@item.BlogName</td>
+                                <td style="text-align:center">@item.BlogDescription</td>
+                                <td style="text-align:center">@item.BlogCategory</td>
+                                <td style="text-align:center">@item.BlogTime.GetValueOrDefault().ToShortDateString()</td>
+                                <td style="text-align:center"><img src="@item.BlogPicture" alt="Image" class="img-fluid" style="max-width: 100px; height: auto;" /></td>
+                                <td style="text-align:center">
+                                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#commentModal-@item.BlogSectionID">
+                                        Blog Yorumlarını Gör
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="commentModal-@item.BlogSectionID" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel-@item.BlogSectionID" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 70%;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="commentModalLabel-@item.BlogSectionID">Blog Yorumları</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="table-responsive">
+                                                        <h2>@item.BlogName Hakkında Yorumlar</h2>
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr style="background-color:#c4c0c0;">
+                                                                    <th style="text-align:center">#</th>
+                                                                    <th style="text-align:center">Kişi İsmi</th>
+                                                                    <th style="text-align:center">Kişi Mail Adresi</th>
+                                                                    <th style="text-align:center">Kişinin Mesajı</th>
+                                                                    <th style="text-align:center">Yorumu Sil</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if (!Model.Comments.Any(c => c.BlogSectionID == item.BlogSectionID))
+                                                                {
+                                                                    <tr>
+                                                                        <td colspan="5" style="text-align:center; color:red;">Yorum bulunamadı!</td>
+                                                                    </tr>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @foreach (var comment in Model.Comments.Where(c => c.BlogSectionID == item.BlogSectionID))
+                                                                    {
+                                                                        <tr>
+                                                                            <td style="text-align:center">@comment.CommentID</td>
+                                                                            <td style="text-align:center">@comment.CommentPersonName</td>
+                                                                            <td style="text-align:center">@comment.CommentPersonMail</td>
+                                                                            <td style="text-align:center">@comment.CommentPersonMessage</td>
+                                                                            <td style="text-align:center">
+                                                                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteModal-@comment.CommentID">
+                                                                                    Yorumu Sil
+                                                                                </button>
+                                                                                <!-- Confirm Delete Modal -->
+                                                                                <div class="modal fade" id="confirmDeleteModal-@comment.CommentID" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel-@comment.CommentID" aria-hidden="true">
+                                                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                                        <div style="border: 2px solid #007bff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);" class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h5 class="modal-title" id="confirmDeleteModalLabel-@comment.CommentID">Yorum Silme Onayı</h5>
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <b style="color:red">Şu kişinin yorumunu silmek istediğinize emin misiniz?</b>
+                                                                                                <p><strong>Kişi İsmi:</strong> @comment.CommentPersonName</p>
+                                                                                                <p><strong>Kişi Mail Adresi:</strong> @comment.CommentPersonMail</p>
+                                                                                                <p><strong>Kişinin Mesajı:</strong> @comment.CommentPersonMessage</p>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+                                                                                                <form method="post" action="/Admin/DeleteCommentSection/@comment.CommentID">
+                                                                                                    <button type="submit" class="btn btn-outline-danger">Eminim Sil</button>
+                                                                                                </form>
+                                                                                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">İptal</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td style="text-align:center"><a href="/Admin/DeleteBlogSection/@item.BlogSectionID" class="btn btn-outline-danger">Sil</a></td>
+                                <td style="text-align:center"><a href="/Admin/UpdateBlogSection/@item.BlogSectionID" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a href="/Admin/AddBlogSection/" class="btn btn-outline-info">Yeni Blog Ekle</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

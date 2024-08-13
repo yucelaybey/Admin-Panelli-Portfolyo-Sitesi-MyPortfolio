@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityUser>
+@{
+    ViewData["Title"] = "AdminSection";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Yönetimi</title>
+    <link rel="stylesheet" href="~/css/table/tabless.css" />
+</head>
+<body>
+    <div class="table-container-wrapper">
+        <div class="table-container">
+            <h2>Admin Hesapları</h2>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th style="text-align:center">Email</th>
+                        <th style="text-align:center">Şifre</th>
+                        <th style="text-align:center">Sil</th>
+                        <th style="text-align:center">Düzenle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="7" style="text-align:center; color:red;">Veri yok!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align:center">@item.Id</td>
+                                <td style="text-align:center">@item.Email</td>
+                                <td style="text-align:center">******</td>
+                                <td style="text-align:center">
+                                    <form asp-action="DeleteAdminSection" asp-route-id="@item.Id" method="post">
+                                        <button type="submit" class="btn btn-outline-danger">Sil</button>
+                                    </form>
+                                </td>
+
+                                <td style="text-align:center"><a href="/Admin/UpdateAdminSection/@item.Id" class="btn btn-outline-warning">Düzenle</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a href="/Admin/AddAdminSection/" class="btn btn-outline-info">Yeni Admin Ekle</a>
+        </div>
+    </div>
+</body>
+</html>
+
