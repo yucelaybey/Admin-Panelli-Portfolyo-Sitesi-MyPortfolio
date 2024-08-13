@@ -49,7 +49,8 @@
 ![Home](https://github.com/user-attachments/assets/1a8a04c0-3a68-4214-8df5-56569414d14d)
 
 ### Admin Panelde Hızlı Tur (Aşağıda gif yoksa bekleyin internet hızınıza bağlı yüklenecektir):
-![Admin 1 5 Speed](https://github.com/user-attachments/assets/b92a5182-1f00-4940-b12c-b57d4c54c8c7)
+![Admin](https://github.com/user-attachments/assets/e3ebe387-dcb4-4ca2-9566-be90eb5ae412)
+
 
 ### Giriş Yapma ve Admin Panelde Menülerde Gezinme (Aşağıda gif yoksa bekleyin internet hızınıza bağlı yüklenecektir):
 ![kmhtgliOQmH-z-0-y-66bbe3c5dc99323a844b2bea](https://github.com/user-attachments/assets/932a0e6b-6987-4d5a-9649-a4f05ae3b87d)
